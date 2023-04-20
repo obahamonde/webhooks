@@ -46,7 +46,7 @@ async def send_email(name: str, email: str, message: str):
 
 @app.post("/api/webhook/{ref}")   
 async def webhook(ref:str):
-    url = "https://hooks.slack.com/services/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"
+    url = "https://hooks.slack.com/services/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"
     method = "POST"
     headers = {
         "Content-Type": "application/json",
