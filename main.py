@@ -52,11 +52,9 @@ async def webhook(ref:str):
         "Content-Type": "application/json",
     }
     contact = await Contact.find_unique("message_id", ref)
-    if isinstance(contact, Contact):
+    if isinstance(contact, Contact):    
         async with ClientSession() as session:
             async with session.request(method, url, headers=headers, json={"text": f"{contact.name} <{contact.email}> sent a message: {contact.message} | {contact.ref}"}) as response:
-                if response.status != 200:
-                    return j({"message": "Something went wrong", "status":"error"}, status=500)
                 return j({"message": "Your message was delivered to my slack channel", "status": "success"})
     return j({"message": "Something went wrong", "status":"error"}, status=500)
     
